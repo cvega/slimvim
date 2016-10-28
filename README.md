@@ -1,9 +1,9 @@
-# vimified
+# slimvim
 
-> Frankly, my dear, you're gonna be vimified one day!
+> Need some excitement in your life, snap into a slimvim.
 
 Kick-ass Vim configuration framework, built on top of *awesome* [Vundle](https://github.com/gmarik/vundle).
-
+![ctrlp view](http://media1.giphy.com/media/gw3LmW72kW0GaX5e/giphy.gif)
 ![ctrlp view](http://f.cl.ly/items/3a0X3F3x3r0K1n1u1Y2r/vimified.png)
 
 ## How to install
