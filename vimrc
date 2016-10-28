@@ -36,7 +36,7 @@ endif
 " Use this variable inside your local configuration to declare
 " which package you would like to include
 if ! exists('g:vimified_packages')
-    let g:vimified_packages = ['general', 'fancy', 'os', 'coding', 'python', 'ruby', 'html', 'css', 'js', 'clojure', 'haskell', 'color']
+    let g:vimified_packages = ['general', 'fancy', 'os', 'coding', 'python', 'html', 'css', 'js', 'clojure', 'haskell', 'color']
 endif
 " }}}
 
@@ -171,7 +171,7 @@ if count(g:vimified_packages, 'coding')
     Bundle 'scrooloose/syntastic'
     let g:syntastic_enable_signs=1
     let g:syntastic_auto_loc_list=1
-    let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby', 'python', ], 'passive_filetypes': ['html', 'css', 'slim'] }
+    let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['python'], 'passive_filetypes': ['html', 'css', 'slim'] }
 
     " --
 
@@ -204,19 +204,6 @@ if count(g:vimified_packages, 'go')
 endif
 " }}}
 
-" _. Ruby {{{
-if count(g:vimified_packages, 'ruby')
-    Bundle 'vim-ruby/vim-ruby'
-    Bundle 'tpope/vim-rails'
-    Bundle 'nelstrom/vim-textobj-rubyblock'
-    Bundle 'ecomba/vim-ruby-refactoring'
-
-    autocmd FileType ruby,eruby,yaml set tw=80 ai sw=2 sts=2 et
-    autocmd FileType ruby,eruby,yaml setlocal foldmethod=manual
-    autocmd User Rails set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-endif
-" }}}
-
 " _. Clang {{{
 if count(g:vimified_packages, 'clang')
     Bundle 'Rip-Rip/clang_complete'
@@ -240,7 +227,7 @@ if count(g:vimified_packages, 'html')
     au BufNewFile,BufReadPost *.slim setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
     au BufNewFile,BufReadPost *.md set filetype=markdown
 
-    let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
+    let g:markdown_fenced_languages = ['coffee', 'css', 'javascript', 'js=javascript', 'json=javascript', 'sass', 'xml', 'html']
 endif
 " }}}
 
@@ -626,8 +613,6 @@ nnoremap <leader>et <C-w>s<C-w>j:e ~/.tmux.conf<cr>
 " --------------------
 
 set ofu=syntaxcomplete#Complete
-let g:rubycomplete_buffer_loading = 0
-let g:rubycomplete_classes_in_global = 1
 
 " showmarks
 let g:showmarks_enable = 1
