@@ -1,6 +1,6 @@
 " vimrc
 " Author: Zaiste! <oh@zaiste.net>
-" Source: https://github.com/zaiste/vimified
+" Source: https://github.com/cvega/slimvim
 "
 " Have fun!
 "
@@ -9,7 +9,7 @@ set nocompatible
 filetype on
 filetype off
 
-let s:dotvim = fnamemodify(globpath(&rtp, 'vimified.dir'), ':p:h')
+let s:dotvim = fnamemodify(globpath(&rtp, 'slimvim.dir'), ':p:h')
 
 " Utils {{{
 exec ':so '.s:dotvim.'/functions/util.vim'
@@ -35,8 +35,8 @@ endif
 " PACKAGE LIST {{{
 " Use this variable inside your local configuration to declare
 " which package you would like to include
-if ! exists('g:vimified_packages')
-    let g:vimified_packages = ['general', 'fancy', 'os', 'coding', 'python', 'html', 'css', 'js', 'clojure', 'haskell', 'color']
+if ! exists('g:slimvim_packages')
+    let g:slimvim_packages = ['general', 'fancy', 'os', 'coding', 'python', 'html', 'css', 'js', 'color']
 endif
 " }}}
 
@@ -58,17 +58,13 @@ endif
 " }}}
 
 " _. General {{{
-if count(g:vimified_packages, 'general')
+if count(g:slimvim_packages, 'general')
     Bundle 'editorconfig/editorconfig-vim'
 
     Bundle 'rking/ag.vim'
     nnoremap <leader>a :Ag -i<space>
 
-    Bundle 'matthias-guenther/hammer.vim'
-    nmap <leader>p :Hammer<cr>
-
     Bundle 'junegunn/vim-easy-align'
-    Bundle 'tpope/vim-endwise'
     Bundle 'tpope/vim-repeat'
     Bundle 'tpope/vim-speeddating'
     Bundle 'tpope/vim-surround'
@@ -108,7 +104,7 @@ endif
 " }}}
 
 " _. Fancy {{{
-if count(g:vimified_packages, 'fancy')
+if count(g:slimvim_packages, 'fancy')
     "call g:Check_defined('g:airline_left_sep', '')
     "call g:Check_defined('g:airline_right_sep', '')
     "call g:Check_defined('g:airline_branch_prefix', '')
@@ -119,7 +115,7 @@ endif
 " }}}
 
 " _. Indent {{{
-if count(g:vimified_packages, 'indent')
+if count(g:slimvim_packages, 'indent')
   Bundle 'Yggdroot/indentLine'
   set list lcs=tab:\|\
   let g:indentLine_color_term = 111
@@ -131,7 +127,7 @@ endif
 " }}}
 
 " _. OS {{{
-if count(g:vimified_packages, 'os')
+if count(g:slimvim_packages, 'os')
     Bundle 'zaiste/tmux.vim'
     Bundle 'benmills/vimux'
     map <Leader>rp :VimuxPromptCommand<CR>
@@ -143,7 +139,7 @@ endif
 
 " _. Coding {{{
 
-if count(g:vimified_packages, 'coding')
+if count(g:slimvim_packages, 'coding')
     Bundle 'majutsushi/tagbar'
     nmap <leader>t :TagbarToggle<CR>
 
@@ -188,7 +184,7 @@ endif
 
 
 " _. Python {{{
-if count(g:vimified_packages, 'python')
+if count(g:slimvim_packages, 'python')
     Bundle 'klen/python-mode'
     Bundle 'python.vim'
     Bundle 'python_match.vim'
@@ -197,25 +193,8 @@ if count(g:vimified_packages, 'python')
 endif
 " }}}
 
-" _. Go {{{
-if count(g:vimified_packages, 'go')
-    Bundle 'fatih/vim-go'
-    let g:go_disable_autoinstall = 1
-endif
-" }}}
-
-" _. Clang {{{
-if count(g:vimified_packages, 'clang')
-    Bundle 'Rip-Rip/clang_complete'
-    Bundle 'LucHermitte/clang_indexer'
-    Bundle 'newclear/lh-vim-lib'
-    Bundle 'LucHermitte/vim-clang'
-    Bundle 'devx/c.vim'
-endif
-" }}}
-
 " _. HTML {{{
-if count(g:vimified_packages, 'html')
+if count(g:slimvim_packages, 'html')
     Bundle 'tpope/vim-haml'
     Bundle 'juvenn/mustache.vim'
     Bundle 'tpope/vim-markdown'
@@ -232,7 +211,7 @@ endif
 " }}}
 
 " _. CSS {{{
-if count(g:vimified_packages, 'css')
+if count(g:slimvim_packages, 'css')
     Bundle 'wavded/vim-stylus'
     Bundle 'lunaru/vim-less'
     nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space>
@@ -240,7 +219,7 @@ endif
 " }}}
 
 " _. JS {{{
-if count(g:vimified_packages, 'js')
+if count(g:slimvim_packages, 'js')
     Bundle 'kchmck/vim-coffee-script'
     au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
@@ -250,59 +229,15 @@ if count(g:vimified_packages, 'js')
 endif
 " }}}
 
-" _. Clojure {{{
-if count(g:vimified_packages, 'clojure')
-    Bundle 'guns/vim-clojure-static'
-    Bundle 'tpope/vim-fireplace'
-    Bundle 'tpope/vim-classpath'
-endif
-" }}}
-
-" _. Haskell {{{
-if count(g:vimified_packages, 'haskell')
-    Bundle 'Twinside/vim-syntax-haskell-cabal'
-    Bundle 'lukerandall/haskellmode-vim'
-
-    au BufEnter *.hs compiler ghc
-
-    let g:ghc = "/usr/local/bin/ghc"
-    let g:haddock_browser = "open"
-endif
-" }}}
-
-" _. Elixir {{{
-if count(g:vimified_packages, 'elixir')
-    Bundle 'elixir-lang/vim-elixir'
-endif
-" }}}
-
-" _. Rust {{{
-if count(g:vimified_packages, 'rust')
-    Bundle 'wting/rust.vim'
-endif
-" }}}
-
-" _. Elm {{{
-if count(g:vimified_packages, 'elm')
-    Bundle 'lambdatoast/elm.vim'
-endif
-" }}}
-
 " _. Color {{{
-if count(g:vimified_packages, 'color')
-    Bundle 'sjl/badwolf'
-    Bundle 'altercation/vim-colors-solarized'
-    Bundle 'tomasr/molokai'
-    Bundle 'zaiste/Atom'
-    Bundle 'w0ng/vim-hybrid'
-    Bundle 'chriskempson/base16-vim'
-    Bundle 'Elive/vim-colorscheme-elive'
-    Bundle 'zeis/vim-kolor'
-    Bundle 'xero/sourcerer.vim'
+if count(g:slimvim_packages, 'color')
+    Bundle 'tyrannicaltoucan/vim-quantum'
 
     " During installation the molokai colorscheme might not be avalable
-    if filereadable(globpath(&rtp, 'colors/molokai.vim'))
-      colorscheme molokai
+    if filereadable(globpath(&rtp, 'colors/quantum.vim'))
+      set termguicolors
+      set background=dark
+      colorscheme quantum
     else
       colorscheme default
     endif
